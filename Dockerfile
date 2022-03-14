@@ -11,6 +11,12 @@ FROM base AS builder
 COPY . ./
 
 RUN apk add --no-cache $BUILD_DEPS && \
+    cd / && \
+    wget -O - https://github.com/jemalloc/jemalloc/releases/download/5.2.1/jemalloc-5.2.1.tar.bz2 | tar -xj && \
+    cd /jemalloc-5.2.1 && \
+    ./configure && \
+    make -j2 && \
+    cd /misskey && \
     git submodule update --init && \
     yarn install && \
     yarn build && \
@@ -29,7 +35,10 @@ COPY --from=builder /misskey/built ./built
 COPY --from=builder /misskey/packages/backend/node_modules ./packages/backend/node_modules
 COPY --from=builder /misskey/packages/backend/built ./packages/backend/built
 COPY --from=builder /misskey/packages/client/node_modules ./packages/client/node_modules
+COPY --from=builder /jemalloc-5.2.1/lib/libjemalloc.so.2 /usr/local/lib/
 COPY . ./
+
+ENV LD_PRELOAD=/usr/local/lib/libjemalloc.so.2
 
 CMD ["npm", "run", "migrateandstart"]
 
