@@ -15,7 +15,7 @@ RUN apk add --no-cache $BUILD_DEPS && \
     wget -O - https://github.com/jemalloc/jemalloc/releases/download/5.2.1/jemalloc-5.2.1.tar.bz2 | tar -xj && \
     cd /jemalloc-5.2.1 && \
     ./configure && \
-    make && \
+    make -j2 && \
     cd /misskey && \
     git submodule update --init && \
     yarn install && \
