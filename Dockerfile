@@ -1,6 +1,6 @@
 FROM node:18.0.0-alpine3.15 AS base
 
-ENV NODE_ENV=production
+ARG NODE_ENV=production
 
 WORKDIR /misskey
 
@@ -40,5 +40,6 @@ COPY . ./
 
 ENV LD_PRELOAD=/usr/local/lib/libjemalloc.so.2
 
+ENV NODE_ENV=production
 CMD ["npm", "run", "migrateandstart"]
 
