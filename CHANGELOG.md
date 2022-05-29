@@ -21,11 +21,13 @@ You should also include the user name that made the change.
 - replaced webpack with Vite @tamaina
 - update dependencies @syuilo
 - enhance: display URL of QR code for TOTP registration @syuilo
-- make CAPTCHA required for signin to improve security @syuilo
+- enhance: Supports Unicode Emoji 14.0 @mei23
 - The theme color is now better validated. @Johann150
   Your own theme color may be unset if it was in an invalid format.
   Admins should check their instance settings if in doubt.
 - Perform port diagnosis at startup only when Listen fails @mei23
+- Rate limiting is now also usable for non-authenticated users. @Johann150
+  Admins should make sure the reverse proxy sets the `X-Forwarded-For` header to the original address.
 
 ### Bugfixes
 - Client: fix settings page @tamaina
