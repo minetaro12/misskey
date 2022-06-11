@@ -9,15 +9,17 @@
 You should also include the user name that made the change.
 -->
 
-## 12.x.x (unreleased)
+## 12.111.0 (2022/06/11)
 ### Improvements
 - Supports Unicode Emoji 14.0 @mei23
 - プッシュ通知を複数アカウント対応に #7667 @tamaina
 - プッシュ通知にクリックやactionを設定 #7667 @tamaina
 - ドライブに画像ファイルをアップロードするときオリジナル画像を破棄してwebpublicのみ保持するオプション @tamaina
 - Server: always remove completed tasks of job queue @Johann150
+- Client: アバターの設定で画像をクロップできるように @syuilo
 - Client: make emoji stand out more on reaction button @Johann150
 - Client: display URL of QR code for TOTP registration @tamaina
+- Client: render quote renote CWs as MFM @pixeldesu
 - API: notifications/readは配列でも受け付けるように #7667 @tamaina
 - API: ユーザー検索で、クエリがusernameの条件を満たす場合はusernameもLIKE検索するように @tamaina
 - MFM: Allow speed changes in all animated MFMs @Johann150
@@ -31,7 +33,6 @@ You should also include the user name that made the change.
 ### Bugfixes
 - Server: keep file order of note attachement @Johann150
 - Server: fix caching @Johann150
-- Server: await promises when following or unfollowing users @Johann150
 - Server: fix missing foreign key for reports leading to reports page being unusable @Johann150
 - Server: fix internal in-memory caching @Johann150
 - Server: use correct order of attachments on notes @Johann150
@@ -40,6 +41,7 @@ You should also include the user name that made the change.
 - Server: Fix `Cannot find module` issue @mei23
 - Federation: Add rel attribute to host-meta @mei23
 - Federation: add id for activitypub follows @Johann150
+- Federation: use `source` instead of `_misskey_content` @Johann150
 - Federation: ensure resolver does not fetch local resources via HTTP(S) @Johann150
 - Federation: correctly render empty note text @Johann150
 - Federation: Fix quote renotes containing no text being federated correctly @Johann150
