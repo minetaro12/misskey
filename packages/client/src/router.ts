@@ -62,9 +62,6 @@ export const routes = [{
 	path: '/about-misskey',
 	component: page(() => import('./pages/about-misskey.vue')),
 }, {
-	path: '/featured',
-	component: page(() => import('./pages/featured.vue')),
-}, {
 	path: '/theme-editor',
 	component: page(() => import('./pages/theme-editor.vue')),
 	loginRequired: true,
@@ -259,6 +256,10 @@ mainRouter.addListener('push', ctx => {
 			window.scroll({ top: scrollPos, behavior: 'instant' });
 		}, 1000);
 	}
+});
+
+mainRouter.addListener('same', () => {
+	window.scroll({ top: 0, behavior: 'smooth' });
 });
 
 window.addEventListener('popstate', (event) => {

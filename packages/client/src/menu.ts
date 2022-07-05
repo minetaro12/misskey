@@ -35,11 +35,6 @@ export const menuDef = reactive({
 		indicated: computed(() => $i != null && $i.hasPendingReceivedFollowRequest),
 		to: '/my/follow-requests',
 	},
-	featured: {
-		title: 'featured',
-		icon: 'fas fa-fire-alt',
-		to: '/featured',
-	},
 	explore: {
 		title: 'explore',
 		icon: 'fas fa-hashtag',
@@ -167,6 +162,13 @@ export const menuDef = reactive({
 					unisonReload();
 				},
 			}], ev.currentTarget ?? ev.target);
+		},
+	},
+	reload: {
+		title: 'reload',
+		icon: 'fas fa-refresh',
+		action: (ev) => {
+			location.reload();
 		},
 	},
 });
