@@ -12,7 +12,7 @@ RUN apt-get update && \
   rm -rf /var/lib/apt/lists/* && \
   cd / && \
   wget -O - https://github.com/jemalloc/jemalloc/releases/download/5.3.0/jemalloc-5.3.0.tar.bz2 | tar -xj && \
-  cd /jemalloc-5.2.1 && \
+  cd /jemalloc-5.3.0 && \
   ./configure && \
   make -j2 && \
   cd /misskey && \
