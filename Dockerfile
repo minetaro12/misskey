@@ -1,16 +1,15 @@
-FROM node:18.0.0-alpine3.15 AS base
+FROM node:16.15.1-bullseye AS builder
 
 ARG NODE_ENV=production
 
 WORKDIR /misskey
 
-ENV BUILD_DEPS autoconf automake file g++ gcc libc-dev libtool make nasm pkgconfig python3 zlib-dev git
-
-FROM base AS builder
-
 COPY . ./
 
-RUN apk add --no-cache $BUILD_DEPS && \
+RUN apt-get update && \
+  apt-get install -y build-essential && \
+  apt-get clean && \
+  rm -rf /var/lib/apt/lists/* && \
   cd / && \
   wget -O - https://github.com/jemalloc/jemalloc/releases/download/5.2.1/jemalloc-5.2.1.tar.bz2 | tar -xj && \
   cd /jemalloc-5.2.1 && \
@@ -20,15 +19,16 @@ RUN apk add --no-cache $BUILD_DEPS && \
 	git submodule update --init && \
 	yarn install && \
 	yarn build && \
-	rm -rf .git
+  rm -rf .git
 
-FROM base AS runner
+FROM node:16.15.1-bullseye-slim AS runner
 
-RUN apk add --no-cache \
-	ffmpeg \
-	tini
+WORKDIR /misskey
 
-ENTRYPOINT ["/sbin/tini", "--"]
+RUN apt-get update && \
+  apt-get install -y ffmpeg tini && \
+  apt-get clean && \
+  rm -rf /var/lib/apt/lists/*
 
 COPY --from=builder /misskey/node_modules ./node_modules
 COPY --from=builder /misskey/built ./built
@@ -41,5 +41,5 @@ COPY . ./
 ENV LD_PRELOAD=/usr/local/lib/libjemalloc.so.2
 
 ENV NODE_ENV=production
+ENTRYPOINT ["/usr/bin/tini", "--"]
 CMD ["npm", "run", "migrateandstart"]
-
