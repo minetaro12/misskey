@@ -11,7 +11,7 @@ RUN apt-get update && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* && \
   cd / && \
-  wget -O - https://github.com/jemalloc/jemalloc/releases/download/5.2.1/jemalloc-5.2.1.tar.bz2 | tar -xj && \
+  wget -O - https://github.com/jemalloc/jemalloc/releases/download/5.3.0/jemalloc-5.3.0.tar.bz2 | tar -xj && \
   cd /jemalloc-5.2.1 && \
   ./configure && \
   make -j2 && \
@@ -35,7 +35,7 @@ COPY --from=builder /misskey/built ./built
 COPY --from=builder /misskey/packages/backend/node_modules ./packages/backend/node_modules
 COPY --from=builder /misskey/packages/backend/built ./packages/backend/built
 COPY --from=builder /misskey/packages/client/node_modules ./packages/client/node_modules
-COPY --from=builder /jemalloc-5.2.1/lib/libjemalloc.so.2 /usr/local/lib/
+COPY --from=builder /jemalloc-5.3.0/lib/libjemalloc.so.2 /usr/local/lib/
 COPY . ./
 
 ENV LD_PRELOAD=/usr/local/lib/libjemalloc.so.2
