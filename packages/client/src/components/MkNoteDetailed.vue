@@ -35,7 +35,7 @@
 			<div class="body">
 				<div class="top">
 					<MkA v-user-preview="appearNote.user.id" class="name" :to="userPage(appearNote.user)">
-						<MkUserName :user="appearNote.user"/>
+						<MkUserName :nowrap="false" :user="appearNote.user"/>
 					</MkA>
 					<span v-if="appearNote.user.isBot" class="is-bot">bot</span>
 					<div class="info">
@@ -139,6 +139,7 @@ import { $i } from '@/account';
 import { i18n } from '@/i18n';
 import { getNoteMenu } from '@/scripts/get-note-menu';
 import { useNoteCapture } from '@/scripts/use-note-capture';
+import { deepClone } from '@/scripts/clone';
 
 const props = defineProps<{
 	note: misskey.entities.Note;
@@ -147,12 +148,12 @@ const props = defineProps<{
 
 const inChannel = inject('inChannel', null);
 
-let note = $ref(JSON.parse(JSON.stringify(props.note)));
+let note = $ref(deepClone(props.note));
 
 // plugin
 if (noteViewInterruptors.length > 0) {
 	onMounted(async () => {
-		let result = JSON.parse(JSON.stringify(note));
+		let result = deepClone(note);
 		for (const interruptor of noteViewInterruptors) {
 			result = await interruptor.handler(result);
 		}
@@ -396,6 +397,7 @@ if (appearNote.replyId) {
 			display: flex;
 			position: relative;
 			margin-bottom: 16px;
+			align-items: center;
 
 			> .avatar {
 				display: block;
@@ -415,14 +417,15 @@ if (appearNote.replyId) {
 				> .top {
 					> .name {
 						font-weight: bold;
+						line-height: 1.3;
 					}
 
 					> .is-bot {
-						flex-shrink: 0;
-						align-self: center;
+						display: inline-block;
 						margin: 0 0.5em;
 						padding: 4px 6px;
 						font-size: 80%;
+						line-height: 1;
 						border: solid 0.5px var(--divider);
 						border-radius: 4px;
 					}
@@ -430,6 +433,12 @@ if (appearNote.replyId) {
 					> .info {
 						float: right;
 					}
+				}
+
+				> .username {
+					margin-bottom: 2px;
+					line-height: 1.3;
+					word-wrap: anywhere;
 				}
 			}
 		}
