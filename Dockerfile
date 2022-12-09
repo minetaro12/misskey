@@ -17,7 +17,7 @@ RUN apt-get update && \
   make -j2 && \
   cd /misskey && \
 	git submodule update --init && \
-	yarn install && \
+	yarn install --immutable && \
 	yarn build && \
   rm -rf .git
 
@@ -30,6 +30,7 @@ RUN apt-get update && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/*
 
+COPY --from=builder /misskey/.yarn/install-state.gz ./.yarn/install-state.gz
 COPY --from=builder /misskey/node_modules ./node_modules
 COPY --from=builder /misskey/built ./built
 COPY --from=builder /misskey/packages/backend/node_modules ./packages/backend/node_modules
@@ -42,4 +43,4 @@ ENV LD_PRELOAD=/usr/local/lib/libjemalloc.so.2
 
 ENV NODE_ENV=production
 ENTRYPOINT ["/usr/bin/tini", "--"]
-CMD ["npm", "run", "migrateandstart"]
+CMD ["yarn", "run", "migrateandstart"]

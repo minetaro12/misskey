@@ -1,7 +1,10 @@
 import * as fs from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import { dirname } from 'node:path';
 import { Inject, Injectable } from '@nestjs/common';
 import { FastifyInstance, FastifyPluginOptions, FastifyReply, FastifyRequest } from 'fastify';
 import sharp from 'sharp';
+import fastifyStatic from '@fastify/static';
 import { DI } from '@/di-symbols.js';
 import type { Config } from '@/config.js';
 import { isMimeImage } from '@/misc/is-mime-image.js';
@@ -14,6 +17,12 @@ import { StatusError } from '@/misc/status-error.js';
 import type Logger from '@/logger.js';
 import { FileInfoService } from '@/core/FileInfoService.js';
 import { LoggerService } from '@/core/LoggerService.js';
+import { bindThis } from '@/decorators.js';
+
+const _filename = fileURLToPath(import.meta.url);
+const _dirname = dirname(_filename);
+
+const assets = `${_dirname}/../../server/file/assets/`;
 
 @Injectable()
 export class MediaProxyServerService {
@@ -30,13 +39,19 @@ export class MediaProxyServerService {
 	) {
 		this.logger = this.loggerService.getLogger('server', 'gray', false);
 
-		this.createServer = this.createServer.bind(this);
+		//this.createServer = this.createServer.bind(this);
 	}
 
+	@bindThis
 	public createServer(fastify: FastifyInstance, options: FastifyPluginOptions, done: (err?: Error) => void) {
 		fastify.addHook('onRequest', (request, reply, done) => {
 			reply.header('Content-Security-Policy', 'default-src \'none\'; img-src \'self\'; media-src \'self\'; style-src \'unsafe-inline\'');
 			done();
+		});
+
+		fastify.register(fastifyStatic, {
+			root: _dirname,
+			serve: false,
 		});
 
 		fastify.get<{
@@ -47,6 +62,7 @@ export class MediaProxyServerService {
 		done();
 	}
 
+	@bindThis
 	private async handler(request: FastifyRequest<{ Params: { url: string; }; Querystring: { url?: string; }; }>, reply: FastifyReply) {
 		const url = 'url' in request.query ? request.query.url : 'https://' + request.params.url;
 	
@@ -122,6 +138,10 @@ export class MediaProxyServerService {
 			return image.data;
 		} catch (err) {
 			this.logger.error(`${err}`);
+
+			if ('fallback' in request.query) {
+				return reply.sendFile('/dummy.png', assets);
+			}
 	
 			if (err instanceof StatusError && (err.statusCode === 302 || err.isClientError)) {
 				reply.code(err.statusCode);
