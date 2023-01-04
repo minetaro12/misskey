@@ -40,7 +40,7 @@ import { MenuItem } from '@/types/menu';
 
 provide('shouldHeaderThin', true);
 provide('shouldOmitHeaderTitle', true);
-provide('shouldSpacerMin', true);
+provide('forceSpacerMin', true);
 
 const props = withDefaults(defineProps<{
 	column: Column;
@@ -59,7 +59,7 @@ const emit = defineEmits<{
 	(ev: 'change-active-state', v: boolean): void;
 }>();
 
-let body = $ref<HTMLDivElement>();
+let body = $shallowRef<HTMLDivElement>();
 
 let dragging = $ref(false);
 watch($$(dragging), v => os.deckGlobalEvents.emit(v ? 'column.dragStart' : 'column.dragEnd'));
@@ -251,7 +251,7 @@ function onDrop(ev) {
 	--deckColumnHeaderHeight: 40px;
 
 	height: 100%;
-	overflow: hidden;
+	overflow: clip;
 	contain: strict;
 
 	&.draghover {
@@ -392,6 +392,7 @@ function onDrop(ev) {
 		overflow-x: clip;
 		-webkit-overflow-scrolling: touch;
 		box-sizing: border-box;
+		container-type: inline-size;
 		background-color: var(--bg);
 	}
 }

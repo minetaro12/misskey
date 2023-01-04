@@ -31,7 +31,7 @@ const emit = defineEmits<{
 	(ev: 'mounted', el?: Element): void;
 }>();
 
-let rootEl = $ref<HTMLDivElement>();
+let rootEl = $shallowRef<HTMLDivElement>();
 
 const widgets = $computed(() => {
 	if (props.place === null) return defaultStore.reactiveState.widgets.value;
@@ -89,7 +89,7 @@ function updateWidgets(thisWidgets) {
 	box-sizing: border-box;
 
 	&.universal {
-		padding: var(--margin) 0;
+		padding-top: var(--margin);
 
 		> * {
 			margin: var(--margin) 0;
