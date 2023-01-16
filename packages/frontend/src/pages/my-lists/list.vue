@@ -4,8 +4,8 @@
 	<MkSpacer :content-max="700">
 		<div class="mk-list-page">
 			<Transition :name="$store.state.animation ? '_transition_zoom' : ''" mode="out-in">
-				<div v-if="list" class="_section">
-					<div class="_content">
+				<div v-if="list" class="">
+					<div class="">
 						<MkButton inline @click="addUser()">{{ i18n.ts.addUser }}</MkButton>
 						<MkButton inline @click="renameList()">{{ i18n.ts.rename }}</MkButton>
 						<MkButton inline @click="deleteList()">{{ i18n.ts.delete }}</MkButton>
@@ -14,12 +14,12 @@
 			</Transition>
 
 			<Transition :name="$store.state.animation ? '_transition_zoom' : ''" mode="out-in">
-				<div v-if="list" class="_section members _gap">
-					<div class="_title">{{ i18n.ts.members }}</div>
-					<div class="_content">
+				<div v-if="list" class="members _margin">
+					<div class="">{{ i18n.ts.members }}</div>
+					<div class="">
 						<div class="users">
 							<div v-for="user in users" :key="user.id" class="user _panel">
-								<MkAvatar :user="user" class="avatar" :show-indicator="true"/>
+								<MkAvatar :user="user" class="avatar" indicator link preview/>
 								<div class="body">
 									<MkUserName :user="user" class="name"/>
 									<MkAcct :user="user" class="acct"/>

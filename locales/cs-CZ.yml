@@ -610,6 +610,14 @@ speed: "Rychlost"
 slow: "Pomalá"
 fast: "Rychlá"
 account: "Účty"
+show: "Zobrazit"
+color: "Barva"
+_role:
+  priority: "Priorita"
+  _priority:
+    low: "Nízká"
+    middle: "Střední"
+    high: "Vysoká"
 _ad:
   back: "Zpět"
 _gallery:
@@ -693,6 +701,8 @@ _weekday:
   friday: "Pátek"
   saturday: "Sobota"
 _widgets:
+  profile: "Váš profil"
+  instanceInfo: "Informace o instanci"
   notifications: "Oznámení"
   timeline: "Časová osa"
   calendar: "Kalendář"
@@ -748,6 +758,9 @@ _charts:
 _timelines:
   home: "Domů"
   global: "Globální"
+_play:
+  script: "Skript"
+  summary: "Popis"
 _pages:
   newPage: "Vytvořit novou stránku"
   editPage: "Upravit stránku"

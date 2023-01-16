@@ -911,6 +911,19 @@ windowRestore: "Obnoviť"
 caption: "Nadpis"
 tools: "Nástroje"
 cannotLoad: "Nedá sa načítať."
+like: "Páči sa mi"
+show: "Zobraziť"
+neverShow: "Nabudúce nezobrazovať"
+remindMeLater: "Pripomenúť neskôr"
+didYouLikeMisskey: "Páči sa vám Misskey?"
+pleaseDonate: "Misskey je bezplatný softvér, ktorý používa {host}. Prosím, prispejte, aby sme ho mohli ďalej rozvíjať!"
+color: "Farba"
+_role:
+  priority: "Priorita"
+  _priority:
+    low: "Málo"
+    middle: "Stredné"
+    high: "Vysoká"
 _sensitiveMediaDetection:
   description: "Strojové učenie sa použije na automatickú detekciu citlivých médií na účely ich moderovania. Mierne sa zvýši zaťaženie servera."
   sensitivity: "Citlivosť detekcie"
@@ -943,6 +956,7 @@ _accountDelete:
 _ad:
   back: "Späť"
   reduceFrequencyOfThisAd: "Túto reklamu zobrazovať menej"
+  hide: "Nikdy nezobrazovať"
 _forgotPassword:
   enterEmail: "Zadajte emailovú adresu, ktorú ste použili pri registrácii. Pošleme vám na ňu odkaz, cez ktorý si môžete obnoviť heslo."
   ifNoEmail: "Ak ste pri registrácii nepoužili email, prosím kontaktujte administrátora."
@@ -1289,6 +1303,8 @@ _weekday:
   friday: "Piatok"
   saturday: "Sobota"
 _widgets:
+  profile: "Profil"
+  instanceInfo: "Informácie o serveri"
   memo: "Prilepené poznámky"
   notifications: "Oznámenia"
   timeline: "Časová os"
@@ -1413,6 +1429,12 @@ _timelines:
   local: "Lokálne"
   social: "Sociálne"
   global: "Globálne"
+_play:
+  viewSource: "Ukázať zdroj"
+  featured: "Význačné"
+  title: "Nadpis"
+  script: "Skript"
+  summary: "Popis"
 _pages:
   newPage: "Vytvoriť novú stránku"
   editPage: "Upraviť túto stránku"
@@ -1472,7 +1494,6 @@ _notification:
   youGotReply: "{name} vám odpovedal/a"
   youGotQuote: "{name} vás citoval/a"
   youRenoted: "{name} preposlal/a vašu poznámku"
-  youGotPoll: "{name} hlasoval/a"
   youGotMessagingMessageFromUser: "{name} vám poslal/a správu"
   youGotMessagingMessageFromGroup: "Prišla správa do skupiny {name}"
   youWereFollowed: "Máte nového sledujúceho"
@@ -1490,7 +1511,6 @@ _notification:
     renote: "Preposlať"
     quote: "Citovať"
     reaction: "Reakcie"
-    pollVote: "Hlasy v hlasovaniach"
     pollEnded: "Hlasovanie skončilo"
     receiveFollowRequest: "Doručené žiadosti o sledovanie"
     followRequestAccepted: "Schválené žiadosti o sledovanie"

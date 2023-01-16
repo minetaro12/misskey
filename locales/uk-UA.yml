@@ -892,6 +892,15 @@ unsubscribePushNotification: "Вимкнути push-сповіщення"
 windowMaximize: "Розгорнути"
 windowRestore: "Відновити"
 caption: "Підпис"
+like: "Вподобати"
+show: "Відображення"
+color: "Колір"
+_role:
+  priority: "Пріоритет"
+  _priority:
+    low: "Низький"
+    middle: "Середній"
+    high: "Високий"
 _sensitiveMediaDetection:
   sensitivity: "Чутливість детектування"
   setSensitiveFlagAutomatically: "Позначити як NSFW"
@@ -917,6 +926,7 @@ _accountDelete:
 _ad:
   back: "Назад"
   reduceFrequencyOfThisAd: "Показувати цю рекламу менше"
+  hide: "Не відображати"
 _gallery:
   my: "Моя галерея"
   liked: "Вподобане"
@@ -1227,6 +1237,8 @@ _weekday:
   friday: "П'ятниця"
   saturday: "Субота"
 _widgets:
+  profile: "Профіль"
+  instanceInfo: "Про цей інстанс"
   memo: "Нагадування"
   notifications: "Сповіщення"
   timeline: "Стрічка"
@@ -1348,6 +1360,12 @@ _timelines:
   local: "Локальна"
   social: "Соціальна"
   global: "Глобальна"
+_play:
+  viewSource: "Переглянути вихідний код"
+  featured: "Популярні"
+  title: "Заголовок"
+  script: "Скрипт"
+  summary: "Опис"
 _pages:
   newPage: "Створити сторінку"
   editPage: "Редагувати сторінку"
@@ -1407,7 +1425,6 @@ _notification:
   youGotReply: "{name} відповідає"
   youGotQuote: "{name} цитує вас"
   youRenoted: "{name} поширює"
-  youGotPoll: "{name} бере участь в опитуванні"
   youGotMessagingMessageFromUser: "Повідомлення від {name}"
   youGotMessagingMessageFromGroup: "Нове повідомлення в групі {name}"
   youWereFollowed: "Новий підписник"
@@ -1422,7 +1439,6 @@ _notification:
     renote: "Поширення"
     quote: "Цитування"
     reaction: "Реакції"
-    pollVote: "Опитування"
     receiveFollowRequest: "Запити на підписку"
     followRequestAccepted: "Прийняті підписки"
     groupInvited: "Запрошення до груп"

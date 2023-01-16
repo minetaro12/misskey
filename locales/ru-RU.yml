@@ -864,6 +864,15 @@ enableAutoSensitiveDescription: "Если доступно, используйт
 account: "Учётные записи"
 windowMaximize: "Развернуть"
 windowRestore: "Восстановить"
+like: "Нравится!"
+show: "Отображение"
+color: "Цвет"
+_role:
+  priority: "Приоритет"
+  _priority:
+    low: "Низкий"
+    middle: "Средне"
+    high: "Высокий"
 _sensitiveMediaDetection:
   description: "Машинное обучение может быть использовано для автоматического обнаружения чувствительных медиа для модерации. Нагрузка на сервер увеличивается незначительно."
   setSensitiveFlagAutomatically: "Установить флаг NSFW"
@@ -891,6 +900,7 @@ _accountDelete:
 _ad:
   back: "Выход"
   reduceFrequencyOfThisAd: "Реже показывать эту рекламу"
+  hide: "Не показывать"
 _forgotPassword:
   enterEmail: "Введите адрес электронной почты, который ввели при регистрации. На неё будет выслана ссылка для смены пароля."
   ifNoEmail: "Если вы не ввели свой адрес электронной почты, свяжитесь с администратором ресурса, чтобы сменить пароль."
@@ -1211,6 +1221,8 @@ _weekday:
   friday: "Пятница"
   saturday: "Суббота"
 _widgets:
+  profile: "Профиль"
+  instanceInfo: "Информация об инстансе"
   memo: "Напоминания"
   notifications: "Уведомления"
   timeline: "Лента"
@@ -1332,6 +1344,12 @@ _timelines:
   local: "Местная"
   social: "Социальная"
   global: "Всеобщая"
+_play:
+  viewSource: "Просмотр исходника"
+  featured: "Популярные"
+  title: "Заголовок"
+  script: "Скрипт"
+  summary: "Описание"
 _pages:
   newPage: "Создать страницу"
   editPage: "Править страницу"
@@ -1391,7 +1409,6 @@ _notification:
   youGotReply: "{name} отвечает вам."
   youGotQuote: "{name} цитирует вас."
   youRenoted: "{name} передаёт вашу заметку."
-  youGotPoll: "{name} участвует в вашем опросе."
   youGotMessagingMessageFromUser: "{name} пишет вам."
   youGotMessagingMessageFromGroup: "Новое сообщение в группе «{name}»."
   youWereFollowed: "У вас новый подписчик."
@@ -1406,7 +1423,6 @@ _notification:
     renote: "Репосты"
     quote: "Цитаты"
     reaction: "Реакции"
-    pollVote: "Голосования"
     receiveFollowRequest: "Получен запрос на подписку"
     followRequestAccepted: "Запрос на подписку одобрен"
     groupInvited: "Приглашение в группы"
